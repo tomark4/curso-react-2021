@@ -26,7 +26,7 @@ describe('prueba en heroes files', () => {
   test('should return heroes marvel', () => {
     const owner = 'Marvel';
     const data1 = getHeroeByOwner(owner);
-    const data2 = heroes.filter( h => h.owner === owner);
+    //const data2 = heroes.filter( h => h.owner === owner);
     expect(data1.length).toBe(2);
   });
 });
