@@ -18,9 +18,9 @@ function App() {
         <div className="col">
           <PrimeraApp name="peter"/>
           <CounterApp numero={10} />
-          <ul class="list-group mt-5">
-            {todos.map(item => (
-              <li className="list-group-item">{item.title}</li>
+          <ul className="list-group mt-5">
+            {todos.map(({id, title}) => (
+              <li className="list-group-item" key={id}>{title}</li>
             ))}
           </ul>
         </div>
