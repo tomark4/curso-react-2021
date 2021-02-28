@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 const PrimeraApp = ({name, lastName}) => {
   return (
     <>
-      <h3 className="my-5 text-center">Hello, your name is: {name} {lastName}</h3>
+      <h3 className="my-5 text-center">Hello, your name is: {name}</h3>
+      <p>{lastName}</p>
     </>
   )
 }
