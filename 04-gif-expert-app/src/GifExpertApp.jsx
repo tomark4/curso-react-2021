@@ -10,8 +10,8 @@ const GifExpertApp = () => {
   const handleAdd = (name) => {
     const lastItem = categories[categories.length - 1];
     setCategories([
-      ...categories,
       { id: lastItem.id + 1, name },
+      ...categories,
     ]);
   };
 
