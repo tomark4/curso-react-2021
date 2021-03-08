@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en GifExpertApp Component debe de mostrar 1 elemento en GifGrid al cargar 1`] = `
+<Fragment>
+  <h2>
+    Soy la gif expert app
+  </h2>
+  <AddCategory
+    onAdd={[Function]}
+  />
+  <hr />
+  <GifGrid
+    key="1"
+    name="Dragon ball"
+  />
+</Fragment>
+`;
+
+exports[`Pruebas en GifExpertApp Component should be return component 1`] = `
+<Fragment>
+  <h2>
+    Soy la gif expert app
+  </h2>
+  <AddCategory
+    onAdd={[Function]}
+  />
+  <hr />
+  <GifGrid
+    key="1"
+    name="Dragon ball"
+  />
+</Fragment>
+`;
