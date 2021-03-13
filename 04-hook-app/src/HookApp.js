@@ -4,8 +4,13 @@
 // import FormWithCustomHooks from './components/02-use-effect/FormWithCustomHooks';
 // import MultipleCustomHooks from './components/03-examples/MultipleCustomHooks';
 // import FocusScreen from "./components/04-useRef/FocusScreen";
+// import RealExampleRef from "./components/04-use-ref/RealExampleRef";
+// import LayoutEffect from './components/05-use-layout-effect/LayoutEffect'
+// import MemoHook from './components/06-memos/MemoHook'
+// import CallbackHook from './components/06-memos/CallbackHook'
 
-import RealExampleRef from "./components/04-useRef/RealExampleRef";
+import Padre from "./components/07-tarea-memo/Padre";
+
 
 function HookApp() {
   return (
@@ -22,7 +27,11 @@ function HookApp() {
 
       {/* <FocusScreen /> */}
 
-      <RealExampleRef />
+      {/* <RealExampleRef /> */}
+
+      {/* <LayoutEffect /> */}
+
+      <Padre />
     </>
   );
 }
