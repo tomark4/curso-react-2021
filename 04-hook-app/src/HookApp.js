@@ -8,9 +8,8 @@
 // import LayoutEffect from './components/05-use-layout-effect/LayoutEffect'
 // import MemoHook from './components/06-memos/MemoHook'
 // import CallbackHook from './components/06-memos/CallbackHook'
-
-import Padre from "./components/07-tarea-memo/Padre";
-
+// import Padre from "./components/07-tarea-memo/Padre";
+import TodoApp from './components/08-reducers/TodoApp'
 
 function HookApp() {
   return (
@@ -31,7 +30,9 @@ function HookApp() {
 
       {/* <LayoutEffect /> */}
 
-      <Padre />
+      {/* <Padre /> */}
+
+      <TodoApp />
     </>
   );
 }
