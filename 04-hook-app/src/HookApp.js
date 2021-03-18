@@ -9,7 +9,8 @@
 // import MemoHook from './components/06-memos/MemoHook'
 // import CallbackHook from './components/06-memos/CallbackHook'
 // import Padre from "./components/07-tarea-memo/Padre";
-import TodoApp from './components/08-reducers/TodoApp'
+// import TodoApp from './components/08-reducers/TodoApp'
+import MainApp from './components/09-use-context/MainApp';
 
 function HookApp() {
   return (
@@ -32,7 +33,7 @@ function HookApp() {
 
       {/* <Padre /> */}
 
-      <TodoApp />
+      <MainApp />
     </>
   );
 }
