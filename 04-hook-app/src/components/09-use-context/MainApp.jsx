@@ -1,8 +1,13 @@
 import AppRouter from './AppRouter';
+import UserContextProvider from './UserContextProvider';
+
 const MainApp = () => {
+
     return (
         <>
-         <AppRouter />
+            <UserContextProvider>
+                <AppRouter />
+            </UserContextProvider>
         </>
     )
 }
