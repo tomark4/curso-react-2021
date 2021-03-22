@@ -27,7 +27,7 @@ const useFetch = (url) => {
       setState({
         data: [],
         loading: false,
-        error: err
+        error: 'no se pudo cargar la info'
       })
     });
   },[url])
