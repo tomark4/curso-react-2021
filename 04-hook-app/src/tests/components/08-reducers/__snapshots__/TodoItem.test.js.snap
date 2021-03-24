@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en todo item should mostrar el component 1`] = `
+<li
+  className="list-group-item"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-8"
+    >
+      <p
+        className=""
+        onClick={[Function]}
+      >
+        lorem 1
+      </p>
+    </div>
+    <div
+      className="col-md-4 text-right"
+    >
+      <button
+        className="btn btn-danger btn-sm"
+        onClick={[Function]}
+      >
+        Borrar
+      </button>
+    </div>
+  </div>
+</li>
+`;
