@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en en login screen component debe mostrarse correctamente 1`] = `
+Array [
+  <h1>
+    Login
+  </h1>,
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+  >
+    Ingresar
+  </button>,
+  <button
+    className="btn btn-danger"
+    onClick={[Function]}
+  >
+    Logout
+  </button>,
+]
+`;

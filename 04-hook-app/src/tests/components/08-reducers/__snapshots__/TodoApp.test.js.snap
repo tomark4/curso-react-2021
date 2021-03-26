@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en todoapp should de mostrarse correctamente 1`] = `
+<div
+  className="container my-5"
+>
+  <h3>
+    TODO app
+  </h3>
+  <hr />
+  <p
+    className="my-2"
+  >
+    todos en mi lista: 
+    0
+  </p>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-8"
+    >
+      <div
+        className="alert alert-info"
+      >
+        No hay todos
+      </div>
+      <ul
+        className="list-group list-group-flush"
+      />
+    </div>
+    <div
+      className="col-md-4"
+    >
+      <TodoAdd
+        onAdd={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

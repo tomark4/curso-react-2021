@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en todo app should retornar el componente 1`] = `
+<Fragment>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor=""
+      >
+        Name
+      </label>
+      <input
+        autoComplete="off"
+        className="form-control"
+        name="name"
+        onChange={[Function]}
+        placeholder="Task"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <button
+        className="btn btn-outline-primary btn-block"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</Fragment>
+`;

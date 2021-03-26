@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en home screen component should de mostrarse el componente correctamente 1`] = `
+<div>
+  <h1>
+    Home
+  </h1>
+  <pre />
+</div>
+`;

@@ -8,7 +8,7 @@ const TodoAdd = ({onAdd}) => {
         e.preventDefault();
 
         if (name.trim().length <= 3){
-            alert("Escribe algo");
+            //alert("Escribe algo");
             return;
         }
 
