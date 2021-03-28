@@ -1,8 +1,20 @@
+import { useContext } from "react";
+import {AuthContext} from '../../auth/AuthContextProvider';
+import {types} from '../../types/types';
 
 const LoginScreen = ({history}) => {
+    const {dispatch} = useContext(AuthContext);
+
+    const lastPath = localStorage.getItem('lastPath') || "/";
 
     const handleLogin = () => {
-        history.replace("/")
+        dispatch({
+            type: types.login,
+            payload: {
+                name: 'jose'
+            }
+        });
+        history.replace(lastPath)
     }
 
     return (
