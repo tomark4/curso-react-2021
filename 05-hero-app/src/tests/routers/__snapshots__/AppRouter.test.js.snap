@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prueba en el componente authrouter debe mostrar el login si no esta autenticado 1`] = `
+<div>
+  <div>
+    <div
+      className="container mt-5"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-6 mx-auto"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-body"
+            >
+              <h4>
+                Login
+              </h4>
+              <hr />
+              <button
+                className="btn btn-success btn-block"
+                onClick={[Function]}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
