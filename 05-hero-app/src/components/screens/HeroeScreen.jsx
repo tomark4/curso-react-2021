@@ -9,12 +9,6 @@ const HeroeScreen = ({history}) => {
 
     const heroe = useMemo( () => getHeroesById(id), [id]);
 
-    const {superhero,
-        alter_ego,
-        publisher,
-        first_appearance,
-        characters
-    } = heroe;
 
     const handleReturn = () => {
         if(history.length <= 2){
@@ -27,6 +21,13 @@ const HeroeScreen = ({history}) => {
     if(!heroe){
         return <Redirect to="/" />;
     }
+
+    const {superhero,
+        alter_ego,
+        publisher,
+        first_appearance,
+        characters
+    } = heroe;
 
     return (
         <div className="row mt-5">
