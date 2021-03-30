@@ -70,4 +70,14 @@ describe('pruebas en heroe screen', () => {
       expect( history.goBack ).toHaveBeenCalledWith();
     });
 
+    test('debe de llamar el redirect', () => {
+      const wrapper = mount(
+        <MemoryRouter initialEntries={['/heroe/jotta-quintero']}>
+          <Route path="/heroe/:id" component={HeroeScreen} />
+        </MemoryRouter>
+      );
+      expect(wrapper.find('Redirect').exists()).not.toBe(true);
+    })
+
+
 });
