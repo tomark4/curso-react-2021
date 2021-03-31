@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en el search screen component debe de mostrarse correctamente con valores por defecto 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-5"
+    >
+      <h4>
+        Search form
+      </h4>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            name="search"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <button
+            className="btn btn-outline-primary btn-block"
+          >
+            Buscar
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      className="col-md-7"
+    >
+      <h4>
+        Heroes
+      </h4>
+      <hr />
+      <div
+        className="alert alert-danger"
+      >
+        No hay data
+      </div>
+    </div>
+  </div>
+</div>
+`;
