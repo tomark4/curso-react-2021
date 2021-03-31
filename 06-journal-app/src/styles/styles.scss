@@ -1,3 +1,6 @@
-html, body {
-    background-color: lightcoral;
-}
+@import './base/settings';
+@import './base/base';
+@import './components/auth';
+@import './components/link';
+@import './base/buttons';
+@import './google-btn.scss';
