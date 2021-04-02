@@ -66,7 +66,7 @@ const LoginScreen = () => {
                     disabled={ui.loading}>
                         {ui.loading ? (
                             <>
-                                <i class="fa fa-spinner fa-spin"></i> Validando
+                                <i className="fa fa-spinner fa-spin"></i> Validando
                             </>
                         ) : 'Ingresar'}
                     </button>
