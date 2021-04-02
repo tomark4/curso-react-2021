@@ -23,7 +23,7 @@ const AppRouter = () => {
                 })
             }
         });
-    },[]);
+    },[dispatch]);
 
     return (
         <Router>
