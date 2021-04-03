@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { types } from '../types/types';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { startLoadingNotes } from '../actions/notes';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -18,14 +19,18 @@ const AppRouter = () => {
     const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged( user => {
+        firebase.auth().onAuthStateChanged( async (user) => {
 
             if( user?.uid ){
+
                 dispatch( {
                     type: types.login,
                     payload: {uid: user.uid, name: user.displayName}
                 });
+
                 setIsAuth(true);
+                dispatch(startLoadingNotes(user.uid))
+
             } else {
                 setIsAuth(false);
             }
