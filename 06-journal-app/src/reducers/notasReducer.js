@@ -26,6 +26,9 @@ export const notasReducer = (state = initialState, action) => {
     case types.notesLoad:
       return { ...state, notes: [ ...action.payload ] }
 
+    case types.notesLogoutCleaning:
+        return {...initialState};
+
     default:
       return state;
   }

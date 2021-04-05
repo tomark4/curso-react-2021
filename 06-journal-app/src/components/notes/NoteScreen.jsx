@@ -1,7 +1,7 @@
 import NotesAppBar from './NotesAppBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react'
-import { activeNote, startDeleting } from '../../actions/notes';
+import { activeNote, noteLogout, startDeleting } from '../../actions/notes';
 
 const NoteScreen = () => {
     const { active:note } = useSelector(state => state.notes)
