@@ -29,3 +29,11 @@
         background-color: lighten($color: $primary, $amount: 20);
     }
 }
+
+.btn-danger{
+    background-color: red;
+    border-radius: 2px;
+    &:disabled{
+        background-color: lighten($color: red, $amount: 20);
+    }
+}

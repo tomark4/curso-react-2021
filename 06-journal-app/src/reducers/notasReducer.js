@@ -17,6 +17,9 @@ export const notasReducer = (state = initialState, action) => {
           : note )
       }
 
+    case types.notesDelete:
+      return { ...state, active: null, notes: state.notes.filter( note => note.id !== action.payload)}
+
     case types.notesActive:
       return {...state, active: {...action.payload } };
 

@@ -1,14 +1,14 @@
 import NotesAppBar from './NotesAppBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react'
-import { activeNote } from '../../actions/notes';
+import { activeNote, startDeleting } from '../../actions/notes';
 
 const NoteScreen = () => {
     const { active:note } = useSelector(state => state.notes)
     const dispatch = useDispatch();
     const [title, setTitle] = useState(note.title);
     const [body, setBody] = useState(note.body);
-
+    const { url } = note
     const activeId = useRef(note.id);
 
     useEffect(() => {
@@ -22,9 +22,13 @@ const NoteScreen = () => {
     useEffect(() => {
         dispatch( activeNote(
             activeId.current,
-            {title, body}
+            {title, body, url}
         ));
-    },[title, body, dispatch])
+    },[title, body, url, dispatch]);
+
+    const handleDelete = () => {
+        dispatch( startDeleting(activeId.current) );
+    }
 
     return (
         <div className="notes__main-content">
@@ -55,12 +59,14 @@ const NoteScreen = () => {
                 { note.url &&
                     <div className="notes__image">
                         <img
-                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
+                            src={note.url}
                             alt="imagen"
                         />
                     </div>
                 }
             </div>
+            <button className="btn btn-danger"
+            onClick={handleDelete}>delete</button>
         </div>
     )
 }

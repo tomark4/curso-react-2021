@@ -1,7 +1,8 @@
 import { db } from "../firebase";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
-
+import Swal from 'sweetalert2'
+import { fileUpload } from "../helpers/fileUpload";
 
 export const startNewNote = () => async (dispatch, getState) => {
   const uid = getState().auth.uid;
@@ -43,6 +44,7 @@ export const startSaveNote = (note) => async (dispatch, getState) => {
   delete noteToFirestore.id;
   await db.doc(`/${uid}/journal/notes/${note.id}`).update(noteToFirestore);
   dispatch( refreshNote(note.id, noteToFirestore) );
+  Swal.fire('Saved',note.title, 'success');
 }
 
 
@@ -55,4 +57,41 @@ export const refreshNote =  (id, note) => ({
       ...note
     }
   }
+})
+
+
+export const startUploading = (file) => async (dispatch, getState) => {
+  const { active:currentNote } = getState().notes;
+
+  Swal.fire({
+    title: 'uploading...',
+    text: 'please wait',
+    allowOutsideClick: false,
+    willOpen: () => {
+      Swal.showLoading()
+    }
+  });
+
+  const fileUrl = await fileUpload(file);
+  currentNote.url = fileUrl;
+
+  dispatch( startSaveNote(currentNote) );
+
+  Swal.close();
+}
+
+
+export const startDeleting = (id) => async (dispatch, getState ) => {
+
+  const uid = getState().auth.uid;
+  await db.doc(`/${uid}/journal/notes/${id}`).delete();
+
+  dispatch( deleteNote(id) );
+
+}
+
+
+export const deleteNote = (id) =>({
+  type:types.notesDelete,
+  payload: id
 })
