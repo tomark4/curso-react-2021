@@ -1,10 +1,11 @@
 import NotesAppBar from './NotesAppBar';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react'
+import { activeNote } from '../../actions/notes';
 
 const NoteScreen = () => {
     const { active:note } = useSelector(state => state.notes)
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [title, setTitle] = useState(note.title);
     const [body, setBody] = useState(note.body);
 
@@ -17,6 +18,13 @@ const NoteScreen = () => {
            activeId.current = note.id
        }
     },[note]);
+
+    useEffect(() => {
+        dispatch( activeNote(
+            activeId.current,
+            {title, body}
+        ));
+    },[title, body, dispatch])
 
     return (
         <div className="notes__main-content">

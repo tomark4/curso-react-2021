@@ -2,9 +2,9 @@ import { db } from "../firebase";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
+
 export const startNewNote = () => async (dispatch, getState) => {
   const uid = getState().auth.uid;
-  console.log(uid)
   const note = {
     title: '',
     body: '',
@@ -35,3 +35,24 @@ export const startLoadingNotes = (uid) => async (dispatch) => {
   const notes = await loadNotes(uid);
   dispatch( setNotes(notes) );
 }
+
+
+export const startSaveNote = (note) => async (dispatch, getState) => {
+  const uid = getState().auth.uid;
+  const noteToFirestore = {...note};
+  delete noteToFirestore.id;
+  await db.doc(`/${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+  dispatch( refreshNote(note.id, noteToFirestore) );
+}
+
+
+export const refreshNote =  (id, note) => ({
+  type: types.notesUpdated,
+  payload:{
+    id,
+    note: {
+      id,
+      ...note
+    }
+  }
+})
