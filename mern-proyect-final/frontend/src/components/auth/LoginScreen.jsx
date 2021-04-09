@@ -1,10 +1,9 @@
-import React from 'react'
 import './login.css';
 
 const LoginScreen = () => {
+
     return (
         <div className="container">
-
             <div className="row">
                 <div className="col s12 m6">
                     <div className="row mt-5" style={{padding:"40px"}}>
