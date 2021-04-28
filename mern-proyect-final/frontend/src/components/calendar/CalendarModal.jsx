@@ -27,18 +27,47 @@ const end = now.clone().add(1, 'hour');
 const CalendarModal = () => {
     const [startDate, setStartDate] = useState(now.toDate());
     const [endDate, setEndDate] = useState(end.toDate());
+    const [formValues, setFormValues] = useState({
+        title:'Evento',
+        notes:'',
+        start: now.toDate(),
+        end: end.toDate()
+    })
 
     const closeModal = () => {
         //setIsOpen(false);
     }
 
-    const handleStartDateChange = (e) => {
-        setStartDate(e);
+    const handleStartDateChange = (value) => {
+        setStartDate(value._d);
+        setFormValues({
+            ...formValues,
+            start: value._d
+        })
     }
 
-    const handleEndDateChange = (e) => {
-        setEndDate(e)
+    const handleEndDateChange = (value) => {
+        setEndDate(value._d)
+        setFormValues({
+            ...formValues,
+            end: value._d
+        })
     }
+
+    const handleInputChange = ({target}) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formValues)
+    }
+
+    const { notes, title } = formValues;
+
 
     return (
         <Modal
@@ -53,11 +82,11 @@ const CalendarModal = () => {
         >
 
             <h3 className="center-align"> Nuevo evento </h3>
-            <form className="container">
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="input-field">
                         <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
-                            <DateTimePicker value={startDate} onChange={handleStartDateChange}
+                            <DateTimePicker name="startDate" value={startDate} onChange={handleStartDateChange}
                             style={{width:"100%"}}/>
                         </MuiPickersUtilsProvider>
                     </div>
@@ -65,7 +94,7 @@ const CalendarModal = () => {
                 <div className="row">
                     <div className="input-field">
                         <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
-                            <DateTimePicker value={endDate} onChange={handleEndDateChange}
+                            <DateTimePicker name="endDate" value={endDate} onChange={handleEndDateChange}
                             style={{width:"100%"}}/>
                         </MuiPickersUtilsProvider>
                     </div>
@@ -77,6 +106,8 @@ const CalendarModal = () => {
                             placeholder="Título del evento"
                             name="title"
                             autoComplete="off"
+                            value={title}
+                            onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -88,6 +119,8 @@ const CalendarModal = () => {
                             rows="5"
                             name="notes"
                             className="materialize-textarea"
+                            value={notes}
+                            onChange={handleInputChange}
                         ></textarea>
                     </div>
                 </div>
