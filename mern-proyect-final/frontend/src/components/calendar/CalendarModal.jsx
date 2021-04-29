@@ -6,6 +6,7 @@ import {
     DateTimePicker,
     MuiPickersUtilsProvider
   } from '@material-ui/pickers';
+import Swal from 'sweetalert2';
 
 
 const customStyles = {
@@ -22,20 +23,24 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
-const end = now.clone().add(1, 'hour');
+const finish = now.clone().add(1, 'hour');
 
 const CalendarModal = () => {
     const [startDate, setStartDate] = useState(now.toDate());
-    const [endDate, setEndDate] = useState(end.toDate());
+    const [endDate, setEndDate] = useState(finish.toDate());
     const [formValues, setFormValues] = useState({
         title:'Evento',
         notes:'',
         start: now.toDate(),
-        end: end.toDate()
-    })
+        end: finish.toDate()
+    });
+    const [validTitle, setValidTitle] = useState(true);
+
+    const { notes, title, start, end } = formValues;
+
 
     const closeModal = () => {
-        //setIsOpen(false);
+        // TODO: cerrar el modal
     }
 
     const handleStartDateChange = (value) => {
@@ -63,10 +68,28 @@ const CalendarModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues)
+        const startDate = moment(start);
+        const endDate = moment(end);
+
+        if(startDate.isSameOrAfter(endDate)){
+            console.log("fecha debe ser mayor");
+            Swal.fire('App','Fecha debe ser mayor','error')
+            return;
+        }
+        setValidTitle(true);
+
+        if(title.trim().length < 3){
+            setValidTitle(false)
+            return;
+        }
+
+        setValidTitle(true);
+
+        // TODO: grabar en base de datos
+
+        closeModal()
     }
 
-    const { notes, title } = formValues;
 
 
     return (
@@ -108,7 +131,9 @@ const CalendarModal = () => {
                             autoComplete="off"
                             value={title}
                             onChange={handleInputChange}
+                            className={!validTitle ? 'invalid' : ''}
                         />
+                        <span className="helper-text" data-error="El title es muy corto" data-success="right">Ingrese el title</span>
                     </div>
                 </div>
                 <div className="row">
