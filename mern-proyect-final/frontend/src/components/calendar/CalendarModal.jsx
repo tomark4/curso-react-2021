@@ -8,7 +8,8 @@ import {
   } from '@material-ui/pickers';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
-import { types } from '../../types/types';
+import { uiCloseModal } from '../../actions/ui';
+
 
 
 const customStyles = {
@@ -46,9 +47,7 @@ const CalendarModal = () => {
     const closeModal = () => {
         // TODO: cerrar el modal
         console.log('cerrar modal')
-        dispatch({
-            type: types.uiCloseModal
-        })
+        dispatch(uiCloseModal())
     }
 
     const handleStartDateChange = (value) => {

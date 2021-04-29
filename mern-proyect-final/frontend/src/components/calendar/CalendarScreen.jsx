@@ -8,7 +8,7 @@ import 'moment/locale/es';
 import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
 import { useDispatch } from 'react-redux';
-import { types } from '../../types/types';
+import { uiOpenModal } from '../../actions/ui';
 
 moment.locale('es');
 
@@ -35,9 +35,7 @@ const CalendarScreen = () => {
     const onDoubleClick = (e) => {
         // double click
         console.log('abrir modal')
-        dispatch({
-            type: types.uiOpenModal
-        })
+        dispatch(uiOpenModal())
     }
 
     const onSelected = (e) => {
