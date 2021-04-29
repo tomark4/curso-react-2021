@@ -7,6 +7,8 @@ import {
     MuiPickersUtilsProvider
   } from '@material-ui/pickers';
 import Swal from 'sweetalert2';
+import { useDispatch, useSelector } from 'react-redux';
+import { types } from '../../types/types';
 
 
 const customStyles = {
@@ -26,6 +28,9 @@ const now = moment().minutes(0).seconds(0).add(1, 'hours');
 const finish = now.clone().add(1, 'hour');
 
 const CalendarModal = () => {
+    const dispatch = useDispatch();
+    const ui = useSelector( state => state.ui);
+
     const [startDate, setStartDate] = useState(now.toDate());
     const [endDate, setEndDate] = useState(finish.toDate());
     const [formValues, setFormValues] = useState({
@@ -38,9 +43,12 @@ const CalendarModal = () => {
 
     const { notes, title, start, end } = formValues;
 
-
     const closeModal = () => {
         // TODO: cerrar el modal
+        console.log('cerrar modal')
+        dispatch({
+            type: types.uiCloseModal
+        })
     }
 
     const handleStartDateChange = (value) => {
@@ -90,12 +98,10 @@ const CalendarModal = () => {
         closeModal()
     }
 
-
-
     return (
         <Modal
-          isOpen={true}
-        //   onAfterOpen={afterOpenModal}
+          isOpen={ui.modalOpen}
+          // onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
