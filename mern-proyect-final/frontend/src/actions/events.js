@@ -13,7 +13,7 @@ export const eventSetActive = (event) => ({
 });
 
 
-export const eventClearActiveEvent = () => ({
+export const eventClearActive = () => ({
   type: types.eventClearActive,
 });
 

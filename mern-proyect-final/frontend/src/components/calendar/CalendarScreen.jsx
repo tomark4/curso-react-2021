@@ -9,7 +9,7 @@ import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventSetActive } from '../../actions/events';
+import { eventClearActive, eventSetActive } from '../../actions/events';
 import AddNewFab from '../ui/AddNewFab';
 import DeleteEventFab from '../ui/DeleteEventFab';
 
@@ -38,6 +38,10 @@ const CalendarScreen = () => {
         localStorage.setItem('lastView',e);
     }
 
+    const onSelectSlot = (e) => {
+        dispatch(eventClearActive())
+    }
+
     const eventStyleGetter = (event, start, end, isSelected) => {
         const style = {
              backgroundColor: "#367cf7",
@@ -63,6 +67,8 @@ const CalendarScreen = () => {
                 onView={ onViewChange }
                 view={ lastView }
                 components={{ event: CalendarEvent }}
+                onSelectSlot={onSelectSlot}
+                selectable={true}
             />
             <CalendarModal />
             <AddNewFab />

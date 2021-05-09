@@ -9,7 +9,7 @@ import {
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveEvent, eventUpdate } from '../../actions/events';
+import { eventAddNew, eventClearActive, eventUpdate } from '../../actions/events';
 
 
 
@@ -51,12 +51,15 @@ const CalendarModal = () => {
     useEffect(() => {
         if(activeEvent){
             setFormValues(activeEvent);
+        } else {
+            setFormValues(initEvent);
         }
+
     },[activeEvent])
 
     const closeModal = () => {
         setFormValues(initEvent);
-        dispatch( eventClearActiveEvent() );
+        dispatch( eventClearActive() );
         dispatch(uiCloseModal());
     }
 
@@ -133,7 +136,7 @@ const CalendarModal = () => {
           overlayClassName="modal-fondo"
         >
 
-            <h3 className="center-align"> Nuevo evento </h3>
+            <h3 className="center-align">{activeEvent ? 'Editar' : 'Nuevo'} evento</h3>
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="input-field">
