@@ -9,7 +9,7 @@ import {
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveEvent } from '../../actions/events';
+import { eventAddNew, eventClearActiveEvent, eventUpdate } from '../../actions/events';
 
 
 
@@ -103,14 +103,20 @@ const CalendarModal = () => {
         setValidTitle(true);
 
         // TODO: grabar en base de datos
-        dispatch( eventAddNew({
-            id: new Date().getTime(),
-            user:{
-                id: '123',
-                name: 'jose'
-            },
-            ...formValues
-        }) );
+        if(activeEvent){
+          // actualizar
+          dispatch( eventUpdate(formValues) )
+        } else {
+          // crear
+          dispatch( eventAddNew({
+              id: new Date().getTime(),
+              user:{
+                  id: '123',
+                  name: 'jose'
+              },
+              ...formValues
+          }) );
+        }
 
         closeModal();
     }
