@@ -7,7 +7,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import CalendarEvent from './CalendarEvent';
 import CalendarModal from './CalendarModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
 import { eventSetActive } from '../../actions/events';
 import AddNewFab from '../ui/AddNewFab';
@@ -16,33 +16,18 @@ moment.locale('es');
 
 const localizer = momentLocalizer(moment);
 
-const events = [
-    {
-        title:'lorem',
-        start: moment().toDate(),
-        end: moment().add(2,'hours').toDate(),
-        bgcolor:'#fafafa',
-        notes: 'lorem ipsum dolor sit amet.',
-        user: {
-            uid: '112123120',
-            name: 'fernando'
-        }
-    }
-];
-
 const CalendarScreen = () => {
+    const {events} = useSelector(state => state.calendar);
     const dispatch = useDispatch()
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
     const onDoubleClick = (e) => {
         // double click
-        console.log('abrir modal')
         dispatch(uiOpenModal())
     }
 
     const onSelected = (e) => {
         // selected
-        dispatch(uiOpenModal());
         dispatch(eventSetActive(e));
     }
 

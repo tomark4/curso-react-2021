@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import MomentUtils from "@date-io/moment";
 import moment from "moment";
@@ -9,7 +9,7 @@ import {
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew } from '../../actions/events';
+import { eventAddNew, eventClearActiveEvent } from '../../actions/events';
 
 
 
@@ -29,26 +29,35 @@ Modal.setAppElement('#root');
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
 const finish = now.clone().add(1, 'hour');
 
+const initEvent = {
+    title:'',
+    notes:'',
+    start: now.toDate(),
+    end: finish.toDate()
+}
+
 const CalendarModal = () => {
     const dispatch = useDispatch();
     const ui = useSelector( state => state.ui);
+    const {activeEvent} = useSelector(state => state.calendar);
 
     const [startDate, setStartDate] = useState(now.toDate());
     const [endDate, setEndDate] = useState(finish.toDate());
-    const [formValues, setFormValues] = useState({
-        title:'Evento',
-        notes:'',
-        start: now.toDate(),
-        end: finish.toDate()
-    });
+    const [formValues, setFormValues] = useState(initEvent);
     const [validTitle, setValidTitle] = useState(true);
 
     const { notes, title, start, end } = formValues;
 
+    useEffect(() => {
+        if(activeEvent){
+            setFormValues(activeEvent);
+        }
+    },[activeEvent])
+
     const closeModal = () => {
-        // TODO: cerrar el modal
-        console.log('cerrar modal')
-        dispatch(uiCloseModal())
+        setFormValues(initEvent);
+        dispatch( eventClearActiveEvent() );
+        dispatch(uiCloseModal());
     }
 
     const handleStartDateChange = (value) => {
@@ -56,7 +65,7 @@ const CalendarModal = () => {
         setFormValues({
             ...formValues,
             start: value._d
-        })
+        });
     }
 
     const handleEndDateChange = (value) => {
@@ -64,14 +73,14 @@ const CalendarModal = () => {
         setFormValues({
             ...formValues,
             end: value._d
-        })
+        });
     }
 
     const handleInputChange = ({target}) => {
         setFormValues({
             ...formValues,
             [target.name]: target.value
-        })
+        });
     }
 
     const handleSubmit = (e) => {
@@ -87,7 +96,7 @@ const CalendarModal = () => {
         setValidTitle(true);
 
         if(title.trim().length < 3){
-            setValidTitle(false)
+            setValidTitle(false);
             return;
         }
 
@@ -101,9 +110,9 @@ const CalendarModal = () => {
                 name: 'jose'
             },
             ...formValues
-        }) )
+        }) );
 
-        closeModal()
+        closeModal();
     }
 
     return (
