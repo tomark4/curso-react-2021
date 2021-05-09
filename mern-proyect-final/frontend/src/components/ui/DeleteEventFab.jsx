@@ -1,6 +1,6 @@
 import { Button, Icon, makeStyles } from '@material-ui/core'
 import { useDispatch } from 'react-redux';
-import { uiOpenModal } from '../../actions/ui';
+import { eventDelete } from '../../actions/events';
 
 const useStyles = makeStyles((theme) => ({
     boton:{
@@ -9,32 +9,33 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "30px",
         padding: '25px',
         bottom: '25px',
-        right:'25px',
-        backgroundColor: "#304ffe",
+        borderLeftStyle:'25px',
+        backgroundColor: "#e53935",
         color:"#fff",
         "&:hover":{
-            backgroundColor:"#536dfe"
+            backgroundColor:"#ef5350"
         }
     }
 }));
 
-const AddNewFab = () => {
+
+const DeleteEventFab = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        dispatch( uiOpenModal() )
+        dispatch( eventDelete() );
     }
 
     return (
         <div>
             <Button className={classes.boton}
-            color="primary"
+            color="secondary"
             onClick={handleClick}>
-                <Icon>add</Icon>
+                <Icon>delete</Icon>
             </Button>
         </div>
     )
 }
 
-export default AddNewFab
+export default DeleteEventFab
