@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/auth');
 const {check} = require("express-validator");
 const validateFields = require('../middlewares/validate-fields');
+const { validateJWT } = require("../middlewares/validate-jwt");
 
 // register user
 router.post("/register",[
@@ -20,7 +21,7 @@ router.post("/login", [
 ], controller.login);
 
 // refresh token
-router.get("/refresh-token", controller.refreshToken);
+router.get("/refresh-token", [validateJWT], controller.refreshToken);
 
 
 module.exports = router;

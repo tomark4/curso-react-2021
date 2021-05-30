@@ -1,6 +1,7 @@
 const { response } = require('express');
 const Usuario = require("../models/Usuario");
 const bcrypt = require("bcryptjs");
+const { generateJWT } = require("../helpers/jwt");
 
 const register = async (req, res = response) => {
   try{
@@ -24,11 +25,14 @@ const register = async (req, res = response) => {
     usuario.password = bcrypt.hashSync( password, salt);
     await usuario.save();
 
+    const token = await generateJWT(usuario.id, usuario.name);
+
     return res.status(201).json({
       ok: true,
       uid: usuario.id,
       name: usuario.name,
-      message: 'user created'
+      message: 'user created',
+      token
     });
 
   } catch(err){
@@ -64,13 +68,14 @@ const login = async (req, res = response) => {
       });
     }
 
-    // TODO: generate JWT
+    const token = await generateJWT(usuario.id, usuario.name);
 
     return res.status(200).json({
       ok: true,
       uid: usuario.id,
       name: usuario.name,
       message: 'login success',
+      token
     });
 
   } catch(err){
@@ -83,8 +88,17 @@ const login = async (req, res = response) => {
 }
 
 
-const refreshToken = (req, res = response) => {
-  return res.json({ok: true, message: 'refresh token'});
+const refreshToken = async (req, res = response) => {
+  try{
+
+    const { uid, name } = req;
+    const token = await generateJWT(uid, name);
+    return res.json({ok: true, message:"refresh token", token});
+
+  } catch( err ){
+    console.log(err);
+    return res.status(500).json({ok: false, message:"error"});
+  }
 }
 
 
