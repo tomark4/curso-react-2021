@@ -8,7 +8,7 @@ const validateJWT = (req, res = response, next) => {
   if(!token){
     return res.status(401).json({
       ok: false,
-      message: 'unauthorized'
+      message: 'token not found'
     });
   }
 
